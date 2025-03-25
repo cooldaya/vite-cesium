@@ -13,7 +13,7 @@ export default {
       fullscreenButton: false, //右下角的全屏按钮
       selectionIndicator: true, //选择指示器
       infoBox: true, //信息面板
-      token:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkM2Y2ZjI2NC05MDJiLTQyZGEtYmFkMi1lOThlY2RmNzhmY2EiLCJpZCI6MTg5MTM5LCJpYXQiOjE3NDI4OTM3MDB9.yGBTtumntTGwICDGeAUetBM6yaGBCvaywZMTJwCxkJ4'
+      token:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJjZTJmN2I4MS1lM2Y5LTRmYzAtYjNkZS04OTM3YjU1ZDkzNzUiLCJpZCI6MTg5MTM5LCJpYXQiOjE3NDI4OTM2ODF9.79h4hMcmvkauq8EJtjrzOQotwEzer_b85rq8V3dIHy8'
     },
   },
 };

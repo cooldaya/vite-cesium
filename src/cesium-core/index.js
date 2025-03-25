@@ -1,4 +1,4 @@
-import { Viewer, Ion } from "cesium";
+import * as Cesium from "cesium";
 import cesiumConfig from "./config";
 
 export class CesiumCore {
@@ -6,6 +6,7 @@ export class CesiumCore {
   viewer = null;
   constructor() {
     this.init();
+    this.test();
   }
 
   init() {
@@ -19,9 +20,25 @@ export class CesiumCore {
       zIndex: 0,
     });
     document.body.appendChild(container);
-    Ion.defaultAccessToken = this.cesiumConfig.viewer.config.token;
-    this.viewer = new Viewer(container, this.cesiumConfig.viewer.config);
+    Cesium.Ion.defaultAccessToken = this.cesiumConfig.viewer.config.token;
+    this.viewer = new Cesium.Viewer(container, this.cesiumConfig.viewer.config);
     this.viewer._cesiumWidget._creditContainer.style.display = "none"; //隐藏logo版权
+  }
+
+  test() {
+    // Remove default base layer
+    const viewer = this.viewer;
+    // Remove default base layer
+    viewer.imageryLayers.remove(viewer.imageryLayers.get(0));
+
+    const imageryLayer = Cesium.ImageryLayer.fromProviderAsync(
+      Cesium.IonImageryProvider.fromAssetId(3954)
+    );
+    viewer.imageryLayers.add(imageryLayer);
+
+    viewer.scene.setTerrain(
+      new Cesium.Terrain(Cesium.CesiumTerrainProvider.fromIonAssetId(1))
+    );
   }
 }
 
