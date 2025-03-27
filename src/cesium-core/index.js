@@ -32,9 +32,11 @@ export class CesiumCore {
     // 初始化 camera视角
     {
       const camera = (this.camera = viewer.camera);
+      // 获取 初始视角及home视角配置
       const { initView: initViewConfig, homeView: homeViewConfig } =
         cesiumConfig.camera;
 
+      // 格式化视角配置
       const formatViewByConfig = (config) => {
         if (!config || !config.destination || !config.orientation) return;
         return {
@@ -47,13 +49,10 @@ export class CesiumCore {
           ),
         };
       };
-
       const initView = formatViewByConfig(initViewConfig);
-      console.log(initView);
-      // 初始化视角
       camera.setView(initView);
 
-      // home视角
+      // 设置 home 视角
       viewer.homeButton.viewModel.command.beforeExecute.addEventListener(
         (event) => {
           event.cancel = true; // 取消默认的 home 视角
