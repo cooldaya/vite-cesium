@@ -23,25 +23,46 @@ export class CesiumCore {
     });
     document.body.appendChild(container);
     Cesium.Ion.defaultAccessToken = this.cesiumConfig.viewer.config.token;
-    this.viewer = new Cesium.Viewer(container, this.cesiumConfig.viewer.config);
-    this.viewer.cesiumWidget.creditContainer.style.display = "none"; //隐藏logo版权
+    const viewer = (this.viewer = new Cesium.Viewer(
+      container,
+      this.cesiumConfig.viewer.config
+    ));
+    viewer.cesiumWidget.creditContainer.style.display = "none"; //隐藏logo版权
 
     // 初始化 camera视角
     {
-      const camera = (this.camera = this.viewer.camera);
-      const initViewConfig = cesiumConfig.camera.initView;
-      // 初始化视角
-      camera.setView({
-        destination: Cesium.Cartesian3.fromDegrees(
-          ...initViewConfig.destination
-        ),
-        orientation: Object.entries(initViewConfig.orientation).reduce(
-          (acc, [key, value]) => (
-            (acc[key] = Cesium.Math.toRadians(value)), acc
+      const camera = (this.camera = viewer.camera);
+      const { initView: initViewConfig, homeView: homeViewConfig } =
+        cesiumConfig.camera;
+
+      const formatViewByConfig = (config) => {
+        if (!config || !config.destination || !config.orientation) return;
+        return {
+          destination: Cesium.Cartesian3.fromDegrees(...config.destination),
+          orientation: Object.entries(config.orientation).reduce(
+            (acc, [key, value]) => (
+              (acc[key] = Cesium.Math.toRadians(value)), acc
+            ),
+            {}
           ),
-          {}
-        ),
-      });
+        };
+      };
+
+      const initView = formatViewByConfig(initViewConfig);
+      console.log(initView);
+      // 初始化视角
+      camera.setView(initView);
+
+      // home视角
+      viewer.homeButton.viewModel.command.beforeExecute.addEventListener(
+        (event) => {
+          event.cancel = true; // 取消默认的 home 视角
+          viewer.camera.flyTo({
+            ...(formatViewByConfig(homeViewConfig) ?? initView),
+            duration: 2, // 飞行动画时间 2s
+          });
+        }
+      );
     }
   }
 
