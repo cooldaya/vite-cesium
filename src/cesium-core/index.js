@@ -6,6 +6,8 @@ export class CesiumCore {
   cesiumConfig = cesiumConfig;
   viewer = null;
   camera = null;
+
+
   constructor() {
     this.init();
     this.test();
@@ -63,14 +65,22 @@ export class CesiumCore {
         }
       );
     }
+
+ 
   }
 
   test() {
     // Remove default base layer
     const viewer = this.viewer;
-    viewer.scene.globe.enableLighting = true;
+    viewer.scene.setTerrain(
+      new Cesium.Terrain(Cesium.CesiumTerrainProvider.fromIonAssetId(1))
+    );
+
   }
+
+  // 获取当前 camera 的视角
   getCameraPositionAndOrientation() {
+    // 获取当前视图的摄像头对象
     const camera = this.viewer.camera;
 
     // 获取摄像头位置（经纬度和高度）
@@ -94,6 +104,8 @@ export class CesiumCore {
     };
     return view;
   }
+
+  // 添加entity
 }
 
 const cesiumCore = (window.cesiumCore = new CesiumCore());
