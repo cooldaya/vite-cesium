@@ -11,13 +11,8 @@ const count = ref(0)
 <template>
   <div>
     <div id="cesium-container"></div>
-    <div class="w-100 h-100 bg-red"></div>
-
   </div>
 </template>
 
 <style scoped>
-.read-the-docs {
-  color: #888;
-}
 </style>
