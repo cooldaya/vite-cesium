@@ -15,7 +15,7 @@ import * as Cesium from "cesium";
 export function getCameraPositionAndOrientation(viewer) {
   // 获取当前视图的摄像头对象
 
-  const camera = viewer.camera;
+  const camera = (window.cesiumCore.viewer || viewer).camera;
 
   // 获取摄像头位置（经纬度和高度）
   const cartographic = Cesium.Cartographic.fromCartesian(camera.position);

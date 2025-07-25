@@ -14,7 +14,7 @@ const mousetrapList = [
                 return navigator.clipboard.writeText(textToCopy);
             }
 
-            copyToClipboard(window.cesiumCore.getCameraPositionAndOrientation()).then(
+            copyToClipboard(window.cesiumCore.utils.camera.getCameraPositionAndOrientation()).then(
                 () => {
                     alert("复制当前 camera 视角信息成功");
                 }
