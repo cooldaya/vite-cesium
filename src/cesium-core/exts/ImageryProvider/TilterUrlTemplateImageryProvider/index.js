@@ -19,7 +19,7 @@ export class TilterUrlTemplateImageryProvider extends Cesium.UrlTemplateImageryP
     // 手动保存自定义参数
     // debugger;
     this._options = options;
-    const tileFilterMapName = "TileIndexPlugin-" + options.tileFilterName;
+    const tileFilterMapName = "TileIndexPlugin_" + options.tileFilterName;
     this.tileFilterMap = window[tileFilterMapName] || null;
     this.isFilterTile = !!(options.tileFilterName && this.tileFilterMap); // 是否过滤瓦片
   }

@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import cesium from "vite-plugin-cesium";
 import UnoCSS from "unocss/vite";
-import TileIndexPlugin from "./cus/cus-vite-plugins/TileIndexPlugin";
+import TileIndexPlugin from "./cus/cus-vite-plugins/TileIndexPlugin.js";
 
 // https://vite.dev/config/
 export default defineConfig({

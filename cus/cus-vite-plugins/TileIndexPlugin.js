@@ -13,7 +13,7 @@ function TileIndexPlugin(
     config(config) {
       checkPluginOptions(pluginOptions);
       const indexMaps = getTileIndexs(pluginOptions);
-      const varName = "TileIndexPlugin-" + pluginOptions.tileFilterName;
+      const varName = "TileIndexPlugin_" + pluginOptions.tileFilterName;
       config.define = {
         ...(config.define || {}),
         [varName]: indexMaps,
