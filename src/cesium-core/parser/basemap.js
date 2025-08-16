@@ -1,5 +1,6 @@
 import * as Cesium from "cesium";
 import * as chinaMapProviders from "../libs/china-map";
+import * as extImageryProvider from "../exts/ImageryProvider/index";
 
 // 国内地图
 const chinaMapClassDict = {
@@ -21,6 +22,11 @@ const customMapClassDict = {
       subdomains: options.subdomains || ["a", "b", "c", "d"],
     });
     return osmProvider;
+  },
+  turl: (options) => {
+    const tilterUrlTemplateImageryProvider =
+      new extImageryProvider.TilterUrlTemplateImageryProvider(options);
+    return tilterUrlTemplateImageryProvider;
   },
 };
 

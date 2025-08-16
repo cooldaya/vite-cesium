@@ -44,12 +44,13 @@ export default {
   },
   basemaps: [
     {
-      name: "高德",
-      type: "amap",
-      options:{
+      name: "url过滤地图",
+      type: "turl", // 拓展类型
+      options: {
         // style:'vec'
-      }
+        url: "/cesium/map1/{z}/{x}/{y}.jpg",
+        tileFilterName: "filterMap1", // 通过瓦片文件夹生成了存在的瓦片对象，名称
+      },
     },
-
   ],
 };
