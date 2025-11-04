@@ -12,8 +12,8 @@ export class TilterUrlTemplateImageryProvider extends Cesium.UrlTemplateImageryP
     if (this.isExistenceImag(x, y, level)) {
       return super.requestImage(x, y, level, request);
     }
-    //   // 不存在该图，就返回一个promise，表示请求失败
-    return Promise.reject();
+    // 不渲染该瓦片
+    return undefined;
   }
   requestImagePreInit(options) {
     // 手动保存自定义参数

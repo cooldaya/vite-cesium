@@ -51,6 +51,7 @@ export default {
         url: "/cesium/map1/{z}/{x}/{y}.jpg",
         tileFilterName: "filterMap1", // 通过瓦片文件夹生成了存在的瓦片对象，名称
       },
+      isUseTileIndexPlugin:true
     },
   ],
 };
